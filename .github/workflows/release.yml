@@ -29,3 +29,4 @@ jobs:
             --target "$GITHUB_SHA" \
             --title 'dsh-web-tabs v0.2.1' \
             --notes-file RELEASE_NOTES_v0.2.1.md
+
