@@ -1,0 +1,21 @@
+name: Source and asset checks
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check JS syntax
+        run: |
+          set -euo pipefail
+          for file in lib/*.js; do node --check "$file"; done
+      - name: Check archived source matches repository
+        run: python3 scripts/check_artifacts.py
