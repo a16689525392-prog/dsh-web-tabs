@@ -1,8 +1,9 @@
 name: Publish v0.2.1 Release
 on:
   push:
-    tags:
-      - 'v0.2.1'
+    branches: [main]
+    paths: ['.github/workflows/release.yml']
+    tags: ['v0.2.1']
 permissions:
   contents: write
 jobs:
@@ -25,6 +26,6 @@ jobs:
           gh release create 'v0.2.1' \
             dist/dsh-web-tabs-0.2.1.zip \
             dist/dsh-web-tabs-0.2.1.tgz \
+            --target "$GITHUB_SHA" \
             --title 'dsh-web-tabs v0.2.1' \
-            --notes-file RELEASE_NOTES_v0.2.1.md \
-            --verify-tag
+            --notes-file RELEASE_NOTES_v0.2.1.md
