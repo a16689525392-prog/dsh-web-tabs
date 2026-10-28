@@ -1,0 +1,30 @@
+name: Publish v0.2.1 Release
+on:
+  push:
+    tags:
+      - 'v0.2.1'
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify release source and artifacts
+        run: |
+          set -euo pipefail
+          for file in lib/*.js; do node --check "$file"; done
+          python3 scripts/check_artifacts.py
+      - name: Create GitHub Release with uploaded assets
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create 'v0.2.1' \
+            dist/dsh-web-tabs-0.2.1.zip \
+            dist/dsh-web-tabs-0.2.1.tgz \
+            --title 'dsh-web-tabs v0.2.1' \
+            --notes-file RELEASE_NOTES_v0.2.1.md \
+            --verify-tag
