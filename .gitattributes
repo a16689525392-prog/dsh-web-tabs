@@ -1,0 +1,6 @@
+*.png binary
+*.zip binary
+*.tgz binary
+*.ps1 text eol=lf
+*.js text eol=lf
+*.md text eol=lf

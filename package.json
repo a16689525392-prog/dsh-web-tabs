@@ -1,0 +1,54 @@
+{
+  "name": "dsh-web-tabs",
+  "version": "0.2.1",
+  "description": "DSH NEXT plugin: multi-tab built-in browser that embeds a real Edge/Chrome window (ChatGPT / Claude / Gemini / muse.ai / Grok + custom tabs), so Google account login works",
+  "type": "module",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": {
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "default": "./lib/client.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "native/win.ps1",
+    "cordis.patch.yml",
+    "README.md",
+    "ACCEPTANCE.zh.md",
+    "screenshot.png",
+    "install.ps1",
+    "uninstall.ps1"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "license": "MIT",
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "cordis-plugin",
+    "browser",
+    "tabs",
+    "edge",
+    "chrome",
+    "chatgpt",
+    "claude",
+    "gemini"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-ui-slots"
+      ],
+      "platform": "web"
+    }
+  }
+}

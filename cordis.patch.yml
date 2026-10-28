@@ -1,0 +1,6 @@
+# DSH bundle layer: inserting this plugin's loader row.
+# `dsh plugin add` / dev_install_package read this file; `dev_inject_plugin` does not.
+- insert:
+    - id: dsh-web-tabs
+      name: dsh-web-tabs
+      config: {}
